@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="{% static 'css/semantic.css' %}">
+     <script src="{% static 'js/jquery.min.js'%}"></script>
+    <!--<script src="http://libs.baidu.com/jquery/1.11.1/jquery.min.js"></script>-->
+    <script src="{% static 'js/semantic.js'%}"></script>
+     <script src="{% static 'js/highcharts.js' %}"></script>
+    <script src="{% static 'js/highcharts-more.js' %}"></script>
+    <script src="{% static 'js/exporting.js' %}"></script>
+
+</head>
+<body>
+<div class="ui visible left sidebar  thin inverted vertical menu">
+    <div class="header item">
+        <img src="{% static 'images/logo2.png' %}">
+    </div>
+    <div class="item"><a href="{% url 'document'%}">Document</a>
+    <i class="browser icon"></i>
+    </div>
+     <div class="item"><a href="{% url 'chart'%}">Charts</a>
+     <i class="bar chart icon"></i>
+     </div>
+
+</div>
+<div class="pusher">
+    <div class="ui menu">
+        <div class="header item" id="menu">Menu
+        <i class="content icon"></i>
+        </div>
+        <div class="item">About Us
+            <i class="user icon"></i>
+        </div>
+        <div class="item">Others
+        <i class="idea icon"></i>
+        </div>
+    </div>
+    {% block content %}
+    {% endblock %}
+
+</div>
+<script>
+    $('#menu').click(function(){
+        $('.ui.sidebar').sidebar('hide');
+    });
+</script>
+{% block js %}
+    {% endblock %}
+</body>
+</html>

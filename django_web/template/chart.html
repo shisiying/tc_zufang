@@ -1,0 +1,144 @@
+{% extends 'base.html'%}
+{% block content %}
+<div class="ui equal width grid" style="margin:5px 0 5px 0;width:70%">
+        <div class="row">
+            <div class="column">
+                <div class="ui container segment">
+                    <div class="ui compact menu">
+                          <div class="ui simple dropdown item">
+                          Area
+                          <i class="dropdown icon"></i>
+                              <div class="menu">
+                                <div class="item" id="CY">朝阳</div>
+                                <div class="item" id="HD">海淀</div>
+                                <div class="item" id="TZ">通州</div>
+                              </div>
+                        </div>
+                    </div>
+
+                         <div class="ui container" id="chart1"></div>
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+{% endblock %}
+{% block js %}
+<script>
+ $(function () {
+      $('#chart1').highcharts({
+        chart: {
+            type: 'bar'
+        },
+        credits:{
+            enabled:false
+        },
+        title: {
+            text: 'Fruit Consumption'
+        },
+        xAxis: {
+            categories: ['Apples', 'Bananas', 'Oranges']
+        },
+        yAxis: {
+            title: {
+                text: 'Fruit eaten'
+            }
+        },
+        series: [{
+            name: 'Jane',
+            data: [5, 7, 3]
+        }, {
+            name: 'John',
+            data: [5, 7, 3]
+        }]
+    });
+});
+ $('#CY').click(function () {
+      $('#chart1').highcharts({
+        chart: {
+            type: 'bar'
+        },
+        credits:{
+            enabled:false
+        },
+        title: {
+            text: 'Fruit Consumption'
+        },
+        xAxis: {
+            categories: ['Apples', 'Bananas', 'Oranges']
+        },
+        yAxis: {
+            title: {
+                text: 'Fruit eaten'
+            }
+        },
+        series: [{
+            name: 'Jane',
+            data: [5, 7, 3]
+        }, {
+            name: 'John',
+            data: [5, 7, 3]
+        }]
+    });
+});
+ $('#HD').click(function () {
+      $('#chart1').highcharts({
+        chart: {
+            type: 'bar'
+        },
+        credits:{
+            enabled:false
+        },
+        title: {
+            text: 'Fruit Consumption'
+        },
+        xAxis: {
+            categories: ['Apples', 'Bananas', 'Oranges']
+        },
+        yAxis: {
+            title: {
+                text: 'Fruit eaten'
+            }
+        },
+        series: [{
+            name: 'Jane',
+            data: [5, 7, 3]
+        }, {
+            name: 'John',
+            data: [5, 7, 3]
+        }]
+    });
+});
+$('#TZ').click(function () {
+      $('#chart1').highcharts({
+        chart: {
+            type: 'bar'
+        },
+        credits:{
+            enabled:false
+        },
+        title: {
+            text: 'Fruit Consumption'
+        },
+        xAxis: {
+            categories: ['Apples', 'Bananas', 'Oranges']
+        },
+        yAxis: {
+            title: {
+                text: 'Fruit eaten'
+            }
+        },
+        series: [{
+            name: 'Jane',
+            data: [5, 7, 3]
+        }, {
+            name: 'John',
+            data: [5, 7, 3]
+        }]
+    });
+});
+</script>
+    {% endblock %}
+

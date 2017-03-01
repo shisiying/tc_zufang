@@ -1,0 +1,101 @@
+{%extends 'base.html'%}
+{% block content %}
+<div class="ui equal width grid" style="width:60%;margin:5px 5px 5px 5px ">
+        <div class="row">
+            <div class="column">
+                <div class="ui black segment">
+                    <div class="ui statistic center" style="text-align:center">
+                        <div class="value">
+                           {{counts}}
+                        </div>
+                        <div class="label">
+                            Documents
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="column">
+                  <div class="ui red segment">
+                     <div class="ui statistic center" style="text-align:center">
+                        <div class="value">
+                            {{citycount}}  <font size="10px">Cites</font>
+                        </div>
+                        <div class="label">
+                             {% for city in cities %}
+                          <div class="ui label">
+                                       {{city}}
+                          </div>
+                         {% endfor %}
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div></div>
+        </div>
+         <div class="row">
+             <div class="column">
+                 <div class="ui blue segment">
+              <div class="ui  container" style="margin:70px 0 0 0">
+                   <div class="ui divided items">
+                       {% for item in itemInfo %}
+                       <div class="item">
+                            <div class="content">
+                                <div class="header">
+                                    <a href="{{item.targeturl}}">{{item.title}}</a>
+                                </div>
+                                <!--<div class="description">-->
+                                    <!--<p>-->
+                                        <!--say something!-->
+                                    <!--</p>-->
+
+                                <!--</div>-->
+                                <div class="extra">
+                                    <div class="ui label">
+                                        {{item.money}}元
+                                    </div>
+                                    <div class="ui label">
+                                        {{item.method}}
+                                    </div>
+                                     <div class="ui label">
+                                        {{item.area}}
+                                    </div>
+                                     <div class="ui label">
+                                        {{item.city}}
+                                    </div>
+                                     <div class="ui label">
+                                        {{item.community}}
+                                    </div>
+                                     <div class="ui label">
+                                        {{item.pub_time}}
+                                    </div>
+
+                                </div>
+                            </div>
+                       </div>
+                       {% endfor %}
+                   </div>
+                    <div class="ui pagination menu">
+                        {% if itemInfo.has_previous %}
+                        <a class="icon item" href="?page={{itemInfo.previous_page_number}}">
+                            <i class="left arrow icon"></i>
+                        </a>
+                        {% endif %}
+                        <div class="disabled item">
+                            {{ itemInfo.number }} of {{itemInfo.paginator.num_pages}}
+                        </div>
+                        {% if itemInfo.has_next %}
+                        <a class="icon item" href="?page={{itemInfo.next_page_number}}">
+                            <i class="right arrow icon"></i>
+                        </a>
+                        {% endif %}
+                    </div>
+                </div>
+                 </div>
+             </div>
+
+         </div>
+
+        </div>
+{% endblock %}
