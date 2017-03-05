@@ -27,18 +27,23 @@ class TczufangSpider(BaseSpider):
         #获取所访问的地址
         response_url=re.findall('^http\:\/\/\w+\.58\.com',response.url)
         response_selector = Selector(response)
-        next_link=list_first_item(response_selector.xpath(u'//div[contains(@class,"pager")]/a[contains(@class,"next")]/@href').extract())
-        if next_link:
-            # print next_link
-            yield Request(url=next_link, callback=self.parse)
-        for detail_link in response_selector.xpath(u'//div[contains(@class,"listBox")]/ul[contains(@class,"listUl")]/li/@logr').extract():
-         #gz_2_39755299868183_28191154595392_sortid:1486483205000 @ ses:busitime ^ desc @ pubid:5453707因为58同城的详情页做了爬取限制，所以由自己构造详情页id
-         #构造详情页url
-           # detail_link='http://dg.58.com/zufang/'+detail_link.split('_')[3]+'x.shtml'
-           detail_link = response_url[0]+'/zufang/' + detail_link.split('_')[3] + 'x.shtml'
-           #对详情页进行解析
-           if detail_link:
-               yield Request(url=detail_link, callback=self.parse_detail)
+        ress='【东莞分类信息】 东莞免费发布信息网 - 东莞58同城'
+        recog=response_selector.xpath(u'/html/head/title/text()').extract()[0].encode('utf8');
+        if recog==ress:
+            pass
+        else:
+            next_link=list_first_item(response_selector.xpath(u'//div[contains(@class,"pager")]/a[contains(@class,"next")]/@href').extract())
+            if next_link:
+                # print next_link
+                yield Request(url=next_link, callback=self.parse)
+            for detail_link in response_selector.xpath(u'//div[contains(@class,"listBox")]/ul[contains(@class,"listUl")]/li/@logr').extract():
+             #gz_2_39755299868183_28191154595392_sortid:1486483205000 @ ses:busitime ^ desc @ pubid:5453707因为58同城的详情页做了爬取限制，所以由自己构造详情页id
+             #构造详情页url
+               # detail_link='http://dg.58.com/zufang/'+detail_link.split('_')[3]+'x.shtml'
+               detail_link = response_url[0]+'/zufang/' + detail_link.split('_')[3] + 'x.shtml'
+               #对详情页进行解析
+               if detail_link:
+                   yield Request(url=detail_link, callback=self.parse_detail)
     #对详情页进行下一步的解析
     def parse_detail(self, response):
         tczufangItem=TcZufangItem()

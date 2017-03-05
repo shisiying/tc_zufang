@@ -37,6 +37,8 @@ import re
 [u'\u7b2c\u4e00\u56fd\u9645\u767e\u5b89\u5c45', u'\u5357\u57ce', u'\u7b2c\u4e00\
 u56fd\u9645']
 [u'\u5357\u57ce', u'\u7b2c\u4e00\u56fd\u9645']
-res=u'\u4e07\u6c5f'
+res=u'\u3010\u4e1c\u839e\u5206\u7c7b\u4fe1\u606f\u3011 \u4e1c\u839e\u514d\u8d39\u53d1\u5e03\u4fe1\u606f\u7f51 - \u4e1c\u839e58\u540c\u57ce'
 res1=res.encode("utf8")
+ress='【东莞分类信息】 东莞免费发布信息网 - 东莞58同城'
+print res1==ress
 print res1
