@@ -51,3 +51,10 @@ mongodb集群存储（待实现）
 
 使用Django和highcharts
 
+三，软件以及组件
+
+编辑器：pycharm
+
+mongodb可视化软件：MongoVUE
+
+redis可视化软件：RedisDesktopManager
