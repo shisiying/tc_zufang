@@ -36,7 +36,7 @@ ROBOTSTXT_OBEY = True
 # Disable cookies (enabled by default)
 COOKIES_ENABLED = False
 #设置下载延时，防止爬虫被禁
-DOWNLOAD_DELAY = 1
+DOWNLOAD_DELAY = 2
 DOWNLOADER_MIDDLEWARES = {
 #         #避免爬虫被禁的策略3，实现了一个可以访问google cache中的数据的download middleware(默认禁用)
 #         # 'woaidu_crawler.contrib.downloadmiddleware.google_cache.GoogleCacheMiddleware':50,
@@ -71,7 +71,7 @@ SCHEDULER_PERSIST = True
 SCHEDULER_QUEUE_CLASS = 'tc_zufang.scrapy_redis.queue.SpiderPriorityQueue'
 
 #配置日志存储目录
-LOG_FILE = "logs/scrapy.log"
+# LOG_FILE = "logs/scrapy.log"
 #爬虫监控使用graphite
 # STATS_CLASS = 'tc_zufang.graphite.RedisGraphiteStatsCollector'
 # GRAPHITE_HOST = '127.0.0.1'

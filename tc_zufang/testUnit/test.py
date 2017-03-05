@@ -37,6 +37,6 @@ import re
 [u'\u7b2c\u4e00\u56fd\u9645\u767e\u5b89\u5c45', u'\u5357\u57ce', u'\u7b2c\u4e00\
 u56fd\u9645']
 [u'\u5357\u57ce', u'\u7b2c\u4e00\u56fd\u9645']
-res=u'\u7b2c\u4e00\u56fd\u9645'
+res=u'\u4e07\u6c5f'
 res1=res.encode("utf8")
 print res1

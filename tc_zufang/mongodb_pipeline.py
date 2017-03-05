@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from pymongo import MongoClient
 from scrapy import log
+import traceback
 
 class SingleMongodbPipeline(object):
     MONGODB_SERVER = "localhost"
@@ -13,7 +14,7 @@ class SingleMongodbPipeline(object):
             client = MongoClient(self.MONGODB_SERVER, self.MONGODB_PORT)
             self.db = client[self.MONGODB_DB]
         except Exception as e:
-            print str(e)
+            traceback.print_exc()
 
     @classmethod
     def from_crawler(cls, crawler):
