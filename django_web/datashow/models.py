@@ -21,5 +21,8 @@ class ItemInfo(Document):
     pub_time = StringField()
     # 所在城市
     city = StringField()
+    phone = StringField()
+    img1= StringField()
+    img2 = StringField()
     #指定是数据表格
     meta={'collection':'zufang_detail'}

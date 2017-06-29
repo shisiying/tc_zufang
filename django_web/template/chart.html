@@ -4,20 +4,19 @@
         <div class="row">
             <div class="column">
                 <div class="ui container segment">
-                    <div class="ui compact menu">
-                          <div class="ui simple dropdown item">
-                          Area
-                          <i class="dropdown icon"></i>
-                              <div class="menu">
-                                <div class="item" id="CY">朝阳</div>
-                                <div class="item" id="HD">海淀</div>
-                                <div class="item" id="TZ">通州</div>
-                              </div>
-                        </div>
-                    </div>
-
                          <div class="ui container" id="chart1"></div>
 
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+<div class="ui equal width grid" style="margin:5px 0 5px 0;width:70%">
+        <div class="row">
+            <div class="column">
+                <div class="ui container segment">
+                         <div class="ui container" id="chart2"></div>
                 </div>
 
             </div>
@@ -30,112 +29,60 @@
  $(function () {
       $('#chart1').highcharts({
         chart: {
-            type: 'bar'
-        },
-        credits:{
-            enabled:false
+            plotBackgroundColor: null,
+            plotBorderWidth: null,
+            plotShadow: false
         },
         title: {
-            text: 'Fruit Consumption'
+            text: '各大城市房源网站所占比例'
         },
-        xAxis: {
-            categories: ['Apples', 'Bananas', 'Oranges']
+        tooltip: {
+            headerFormat: '{series.name}<br>',
+            pointFormat: '{point.name}: <b>{point.percentage:.1f}%</b>'
         },
-        yAxis: {
-            title: {
-                text: 'Fruit eaten'
+        plotOptions: {
+            pie: {
+                allowPointSelect: true,
+                cursor: 'pointer',
+                dataLabels: {
+                    enabled: true,
+                    format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+                    style: {
+                        color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+                    }
+                },
+                states: {
+                    hover: {
+                        enabled: false
+                    }
+                },
+                slicedOffset: 20,         // 突出间距
+                point: {                  // 每个扇区是数据点对象，所以事件应该写在 point 下面
+                    events: {
+                        // 鼠标滑过是，突出当前扇区
+                        mouseOver: function() {
+                            this.slice();
+                        },
+                        // 鼠标移出时，收回突出显示
+                        mouseOut: function() {
+                            this.slice();
+                        },
+                        // 默认是点击突出，这里屏蔽掉
+                        click: function() {
+                            return false;
+                        }
+                    }
+                }
             }
         },
         series: [{
-            name: 'Jane',
-            data: [5, 7, 3]
-        }, {
-            name: 'John',
-            data: [5, 7, 3]
-        }]
-    });
-});
- $('#CY').click(function () {
-      $('#chart1').highcharts({
-        chart: {
-            type: 'bar'
-        },
-        credits:{
-            enabled:false
-        },
-        title: {
-            text: 'Fruit Consumption'
-        },
-        xAxis: {
-            categories: ['Apples', 'Bananas', 'Oranges']
-        },
-        yAxis: {
-            title: {
-                text: 'Fruit eaten'
-            }
-        },
-        series: [{
-            name: 'Jane',
-            data: [5, 7, 3]
-        }, {
-            name: 'John',
-            data: [5, 7, 3]
-        }]
-    });
-});
- $('#HD').click(function () {
-      $('#chart1').highcharts({
-        chart: {
-            type: 'bar'
-        },
-        credits:{
-            enabled:false
-        },
-        title: {
-            text: 'Fruit Consumption'
-        },
-        xAxis: {
-            categories: ['Apples', 'Bananas', 'Oranges']
-        },
-        yAxis: {
-            title: {
-                text: 'Fruit eaten'
-            }
-        },
-        series: [{
-            name: 'Jane',
-            data: [5, 7, 3]
-        }, {
-            name: 'John',
-            data: [5, 7, 3]
-        }]
-    });
-});
-$('#TZ').click(function () {
-      $('#chart1').highcharts({
-        chart: {
-            type: 'bar'
-        },
-        credits:{
-            enabled:false
-        },
-        title: {
-            text: 'Fruit Consumption'
-        },
-        xAxis: {
-            categories: ['Apples', 'Bananas', 'Oranges']
-        },
-        yAxis: {
-            title: {
-                text: 'Fruit eaten'
-            }
-        },
-        series: [{
-            name: 'Jane',
-            data: [5, 7, 3]
-        }, {
-            name: 'John',
-            data: [5, 7, 3]
+            type: 'pie',
+            name: '房源信息占比',
+            data: [
+                {% for item in cities %}
+                  {{item|safe}},
+                {% endfor %}
+            ]
         }]
     });
 });

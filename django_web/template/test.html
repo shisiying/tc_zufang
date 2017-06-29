@@ -1,0 +1,52 @@
+{% extends 'base.html'%}
+{% load static %}
+{% block content %}
+<div class="ui container" id="cloud"></div>
+{% endblock %}
+{% block js %}
+	<script src="{% static 'js/d3.min.js'%}"></script>
+		<script src="{% static 'js/d3.layout.cloud.js'%}"></script>
+<script type="text/javascript">
+  var fill = d3.scale.category20();
+  d3.layout.cloud().size([1000, 1000])
+      //map 返回新的object数组
+	  .words([
+	   {% for item in wenzi %}
+                 '{{item}}',
+        {% endfor %}
+	  ].map(function(d) {
+        return {"text": d, "size": 10 + Math.random() * 50};
+      }))
+	  //~~的作用是单纯的去掉小数部分，不论正负都不会改变整数部分
+	  //这里的作用是产生0 1
+      .rotate(function() { return ~~(Math.random() * 2) * 90; })
+      .font("Impact")
+      .fontSize(function(d) { return d.size; })
+      .on("end", draw)//结束时运行draw函数
+      .start();
+
+  function draw(words) {
+    d3.select("#cloud").append("svg")
+        .attr("width", 1000)
+        .attr("height",1500)
+        .attr("style","border:1px solid white")
+      .append("g")
+        .attr("transform", "translate(150,150)")
+      .selectAll("text")
+        .data(words)
+      .enter().append("text")
+        .style("border","1px solid blue")
+        .style("font-size", function(d) { return d.size + "px"; })
+        .style("font-family", "Impact")
+        .style("fill", function(d, i) { return fill(i); })//fill 在前面15行定义为颜色集
+        .attr("text-anchor", "middle")
+        .attr("transform", function(d) {
+          return "translate(" + [d.x, d.y] + ")rotate(" + d.rotate + ")";
+        })
+        .text(function(d) { return d.text; });
+
+
+  }
+
+</script>
+{% endblock %}

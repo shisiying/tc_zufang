@@ -18,10 +18,13 @@
     <div class="header item">
         <img src="{% static 'images/logo2.png' %}">
     </div>
-    <div class="item"><a href="{% url 'document'%}">Document</a>
+    <div class="item"><a href="{% url 'document'%}">文件</a>
     <i class="browser icon"></i>
     </div>
-     <div class="item"><a href="{% url 'chart'%}">Charts</a>
+     <div class="item"><a href="{% url 'chart'%}">表格</a>
+     <i class="bar chart icon"></i>
+     </div>
+     <div class="item"><a href="{% url 'cloud'%}">文字云</a>
      <i class="bar chart icon"></i>
      </div>
 
@@ -30,12 +33,6 @@
     <div class="ui menu">
         <div class="header item" id="menu">Menu
         <i class="content icon"></i>
-        </div>
-        <div class="item">About Us
-            <i class="user icon"></i>
-        </div>
-        <div class="item">Others
-        <i class="idea icon"></i>
         </div>
     </div>
     {% block content %}
